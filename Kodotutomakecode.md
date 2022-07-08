@@ -29,6 +29,7 @@ Va dans l'onglet ``||sprites:Sprites||`` et place le bloc ``||variables:définir
 ```
 ## Choisissons un personnage joueur
 Clique sur le carré gris au centre de la zone bleue. Tu te retrouves alors dans l'éditeur mais nous allons choisir un sprite depuis la galerie. Pour cela, clique en haut de ton écran sur "Galerie" et choisis un sprite.
+https://github.com/Arianou1987/Arianou1987/commit/8df47c9dbc248753cfe5df855b92cbee7eaac52f
 ```blocks
  let mySprite = sprites.create(img`
     . . . . . . f f f f . . . . . . 
@@ -51,6 +52,7 @@ Clique sur le carré gris au centre de la zone bleue. Tu te retrouves alors dans
 ```
 ## Scène
 Nous allons maintenant construire le décor. Va dans ``||scene:Scène||`` et ajoute le bloc ``||scene:Définir plan de tuile||``. Clique ensuite sur le carré gris à l'intérieur du bloc et dessine un niveau à l'aide des tuiles du style "Dungeon".
+https://github.com/Arianou1987/Arianou1987/blob/de94b1b1f3dc8a42ff0f345a77fb1be04ad998d3/Plan%20de%20tuile.png
 ```blocks
  let mySprite = sprites.create(img`
     . . . . . . f f f f . . . . . . 
@@ -126,6 +128,7 @@ scene.cameraFollowSprite(mySprite)
 ```
 ## Créons une entrée
 Nous allons maintenant ajouter une tuile de début de jeu et y placer notre sprite au démarrage. Nous allons retourner sur le plan de tuile en cliquant dessus et ajouter un escalier depuis l'onglet "Dungeon" en x0, y2
+https://github.com/Arianou1987/Arianou1987/blob/de94b1b1f3dc8a42ff0f345a77fb1be04ad998d3/Tuile%20entr%C3%A9e.png
 ## Créons une entrée
 Ajoute maintenant le bloc ``||scene:placer mySprite sur plan de tuiles||`` et modifie la ligne à 2
 ```blocks
@@ -155,6 +158,7 @@ tiles.placeOnTile(mySprite, tiles.getTileLocation(0, 2))
 ```
 ## Créons une sortie
 De la même manière, nous allons placer une tuile de fin sur le plan de tuile. Veille à utiliser une tuile différente que celle de l'entrée (escalier dans l'autre sens).
+https://github.com/Arianou1987/Arianou1987/blob/de94b1b1f3dc8a42ff0f345a77fb1be04ad998d3/Tuile%20de%20sortie.png
 ## Créons une sortie
 Dans ``||scene:Scènes||``, sélectionne le bloc ``||scene:Lorsque sprite de type Player chevauche à location||`` et place-le où tu veux dans la zone de programmation. Dans le menu déroulant, choisis la tuile d'escalier de sortie.
 ```blocks
@@ -170,8 +174,10 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairWest, function (spri
 ```
 ## Les murs
 Tu remarques que notre joueur peut toujours aller sur les murs. Pour les rendre solides, va dans le plan de tuile, sélectionne l'icône mur qui devient rouge et passe sur les éléments qu'il faut rendre solides.
+https://github.com/Arianou1987/Arianou1987/blob/de94b1b1f3dc8a42ff0f345a77fb1be04ad998d3/Murs.png
 ## Objets à ramasser
 Nous allons créer des objets qui rapportent des points. Mais tout d'abord, afin d'en avoir plusieurs, nous allons définir leur emplacement. Va sur le plan de tuile, dans "My Tiles" et créer une tuile en cliquant sur +. Sélectionne ensuite le pot de peinture, choisis une couleur qui se rapproche très fort de ton décor et pose cette nouvelle tuile là où il y aura un objet à ramasser.
+https://github.com/Arianou1987/Arianou1987/blob/de94b1b1f3dc8a42ff0f345a77fb1be04ad998d3/Emplacements%20food.png
 ## Objets à ramasser
 Dans ``||loops:Au démarrage||``, place une autre boucle ``||loops:Pour l'élément valeur de list||``. Remplace "list" par ``||scene:Tableau des emplacements de||`` et sélectionne ta tuile de couleur.
 ```blocks
@@ -604,19 +610,18 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, ot
 })
 ```
 ## Projectiles
-Dans cette nouvelle boucle, ajoute ``||sprites:Détruire mySprite||``, clique sur le + et choisis l'effet que tu souhaites.
+Dans cette nouvelle boucle, ajoute ``||sprites:Détruire mySprite||`` et remplace mySprite par "OtherSprite". Clique sur le + et choisis l'effet que tu souhaites.
 ```blocks
-let mySprite: Sprite = null
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
     // @highlight
-    mySprite.destroy(effects.fire, 500)
+    otherSprite.destroy(effects.fire, 500)
 })
 ```
 ## Vie 
 Et si nous perdions une vie chaque fois qu'un projectile touche le joueur ? Ajoute le bloc ``||info:Modifier la vie de -1||`` dans notre dernière boucle.
 ```blocks
  sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
-    sprite.destroy(effects.fire, 500)
+    otherSprite.destroy(effects.fire, 500)
     // @highlight
     info.changeLifeBy(-1)
 })
@@ -823,3 +828,81 @@ for (let valeur of tiles.getTilesByType(assets.tile`myTile2`)) {
 }
 ```
 ## Niveaux
+Dans la boucle ``||functions:NouveauNiveau||``, ajoute la boucle ``||logic:Si vrai alor||`` depuis l'onglet ``||logic:Logique||``.
+```blocks
+function NouveauNiveau () {
+    // @highlight
+    if (true) {
+    	
+    }
+}
+```
+## Niveaux
+Dans ``||logic:logique||``, prends la comparaison ``||logic:0 = 0||`` et place le bloc sur "Vrai".
+```blocks
+function NouveauNiveau () {
+    if (0 == 0) {
+    	
+    }
+}
+```
+## Niveaux
+Prends ta variable ``||variables:NuméroNiveau||`` et place la sur le premier 0. Ecris ensuite = 1.
+```blocks
+function NouveauNiveau () {
+    if (NuméroNiveau == 1) {
+    	
+    }
+}
+```
+## Niveaux
+Duplique ton plan de tuile en cliquant droit sur le bloc et viens le placer dans ta nouvelle boucle.
+```blocks
+function NouveauNiveau () {
+    if (NuméroNiveau == 1) {
+        tiles.setCurrentTilemap(tilemap`level1`)
+    }
+}
+```
+## Niveaux
+Créons maintenant le niveau 2. Dans la boucle ``||functions:NouveauNiveau||``, crée une 2e condition comme précédemment et ajoute un nouveau bloc de plan de tuiles. N'oublie pas d'indiquer dans la comparaison qu'il s'agit du niveau 2.
+```blocks
+function NouveauNiveau () {
+    if (NuméroNiveau == 1) {
+        tiles.setCurrentTilemap(tilemap`level1`)
+    }
+    // @highlight
+    if (NuméroNiveau == 2) {
+        tiles.setCurrentTilemap(tilemap`niveau2`)
+    }
+}
+```
+## Niveau 2
+Clique sur le carré gris de ton nouveau plan de tuile et crée un niveau 2 en prenant soin d'utiliser une tuile différente qui servira d'entrée. N'oublie pas les murs solides !
+https://github.com/Arianou1987/Arianou1987/commit/ab74d99315ce44b3f60cde497b638a70b0927e00
+## Passer au niveau 2
+Reprends la boucle ``||scene:Lorsque sprite de type Player chevauche 'Escalier' à location||`` et supprime le bloc ``||game:Jeu termine Victoire||``. Remplace celui-ci par ``||variables:Modifier NuméroNiveau de 1||`` et ``||functions:appel NouveauNiveau||``.
+```blocks
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairWest, function (sprite, location) {
+    NuméroNiveau += 1
+    NouveauNiveau()
+})
+function NouveauNiveau () {}
+```
+## Entrée du niveau 2
+Enfin, dans ta fonction de niveau, place le bloc ``||scene:Placer mySprite sur une tuile aléatoire||`` dans condition du niveau 2 et sélectionne ta tuile d'entrée.
+```blocks
+function NouveauNiveau () {
+    if (NuméroNiveau == 1) {
+        tiles.setCurrentTilemap(tilemap`level1`)
+    }
+    if (NuméroNiveau == 2) {
+        tiles.setCurrentTilemap(tilemap`niveau2`)
+        // @highlight
+        tiles.placeOnRandomTile(mySprite, sprites.builtin.forestTiles9)
+    }
+}
+```
+## Merci
+Ce tutoriel est terminé, teste ton jeu et amuse-toi ! Clique sur "Terminé" pour découvrir de nouveaux onglets et de nouveaux blocs !
+Enjoy !
